@@ -1,12 +1,12 @@
 #Config:
 variable "bucket_name" {
-  default     = "non-prod-bucket-sgaire3"
+  default     = "acs730-group10-bucket"
   type        = string
   description = "Bucket name"
 }
 
 variable "state_file" {
-  default     = "dev/network/terraform.tfstate"
+  default     = "group10/dev/terraform.tfstate"
   type        = string
   description = "State file path"
 }
@@ -25,8 +25,8 @@ variable "instance_type" {
   default     = "t2.micro"
 }
 
-variable "ami_id" {
+variable "linux_ami_id" {
   description = "AMI ID for EC2 instances"
   type        = string
-  default     = "ami-0c94855ba95c71c99" # Amazon Linux 2 AMI (Change as needed)
+  default     = "ami-0ae8f15ae66fe8cda" # Amazon Linux 2 AMI (Change as needed)
 }

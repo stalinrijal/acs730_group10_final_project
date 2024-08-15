@@ -13,11 +13,10 @@ provider "aws" {
   region = var.aws_region
 }
 
-data "terraform_remote_state" "network" {
-  backend = "s3"
-  config = {
-    bucket = var.bucket_name
-    key    = var.state_file
+terraform {
+  backend "s3" {
+    bucket = "acs730-group10-bucket"
+    key    =  "group10/dev/terraform.tfstate"
     region = "us-east-1"
   }
 }
