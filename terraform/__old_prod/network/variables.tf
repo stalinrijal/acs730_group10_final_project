@@ -11,28 +11,27 @@ variable "default_tags" {
 # Name prefix
 variable "prefix" {
   type        = string
-  default     = "dev"
+  default     = "prod"
   description = "Name prefix"
 }
 
 # Provision public subnets in custom VPC
-variable "public_subnet_cidrs" {
-  default     = ["10.1.0.0/24", "10.1.1.0/24"]
+variable "private_cidr_blocks" {
+  default     = ["10.10.1.0/24", "10.10.2.0/24"]
   type        = list(string)
-  description = "Public Subnet CIDRs"
+  description = "Private Subnet CIDRs"
 }
 
 # VPC CIDR range
 variable "vpc_cidr" {
-  default     = "10.1.0.0/16"
+  default     = "10.10.0.0/16"
   type        = string
   description = "VPC to host static web site"
 }
 
 # Variable to signal the current environment 
 variable "env" {
-  default     = "dev"
+  default     = "prod"
   type        = string
   description = "Deployment Environment"
 }
-

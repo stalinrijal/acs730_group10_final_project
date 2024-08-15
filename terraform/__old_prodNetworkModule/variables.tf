@@ -1,20 +1,14 @@
-# Provision public subnets in custom VPC
-variable "public_cidr_blocks" {
-  default = ["10.1.1.0/24", "10.1.2.0/24", "10.1.3.0/24", "10.1.4.0/24"]
-  type        = list(string)
-  description = "Public Subnet CIDRs"
-}
 
 # Provision public subnets in custom VPC
 variable "private_cidr_blocks" {
-  default = ["10.1.5.0/24", "10.1.6.0/24"]
+  default     = ["10.10.1.0/24", "10.10.2.0/24"]
   type        = list(string)
-  description = "Public Subnet CIDRs"
+  description = "Private Subnet CIDRs"
 }
 
 # VPC CIDR range
 variable "vpc_cidr" {
-  default = "10.1.0.0/16"
+  default     = "10.10.0.0/16"
   type        = string
   description = "VPC to host static web site"
 }
@@ -28,7 +22,7 @@ variable "default_tags" {
 
 # Prefix to identify resources
 variable "prefix" {
-  default     = "assmt2"
+  #default     = "week7"
   type        = string
   description = "Name prefix"
 }
@@ -36,7 +30,7 @@ variable "prefix" {
 
 # Variable to signal the current environment 
 variable "env" {
-  default     = "prod"
+  default     = "dev"
   type        = string
-  description = "Production Environment"
+  description = "Deployment Environment"
 }

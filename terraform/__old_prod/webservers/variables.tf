@@ -1,23 +1,10 @@
-#Config:
-variable "bucket_name" {
-  default     = "non-prod-bucket-sgaire3"
-  type        = string
-  description = "Bucket name"
-}
-
-variable "state_file" {
-  default     = "dev/network/terraform.tfstate"
-  type        = string
-  description = "State file path"
-}
-
-
 # Instance type
 variable "instance_type" {
   default = {
-    "prod" = "t2.micro"
-    "test" = "t2.micro"
-    "dev"  = "t2.micro"
+    "prod"    = "t2.micro"
+    "test"    = "t2.micro"
+    "staging" = "t2.micro"
+    "dev"     = "t2.micro"
   }
   description = "Type of the instance"
   type        = map(string)
@@ -26,7 +13,7 @@ variable "instance_type" {
 # Default tags
 variable "default_tags" {
   default = {
-    "Owner" = "CAAacs730"
+    "Owner" = "CAAacs"
     "App"   = "Web"
   }
   type        = map(any)
@@ -35,7 +22,7 @@ variable "default_tags" {
 
 # Prefix to identify resources
 variable "prefix" {
-  default     = "assmt1"
+  default     = "prod"
   type        = string
   description = "Name prefix"
 }
@@ -45,5 +32,5 @@ variable "prefix" {
 variable "env" {
   default     = "prod"
   type        = string
-  description = "Production Environment"
+  description = "Deployment Environment"
 }

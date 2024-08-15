@@ -1,8 +1,11 @@
 # Add output variables
-output "subnet_id" {
-  value = aws_subnet.prod_private[*].id
+output "public_subnet_id" {
+  value = aws_subnet.public[*].id
+}
+output "private_subnet_id" {
+  value = aws_subnet.private[*].id
 }
 
 output "vpc_id" {
-  value = aws_vpc.prod_vpc.id
+  value = aws_vpc.main.id
 }
