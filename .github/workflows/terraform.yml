@@ -59,6 +59,11 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/linux.pem
           chmod 400 ~/.ssh/linux.pem
+          ssh-keyscan -H 54.211.251.224 >> ~/.ssh/known_hosts
+
+      - name: SSH into EC2
+        run: |
+          ssh -i ~/.ssh/linux.pem ec2-user@54.211.251.224 'echo "Connected successfully"'
       
       - name: Run Ansible Playbook
         run: ansible-playbook ansible/myplaybook.yml -i ansible/hosts.txt
