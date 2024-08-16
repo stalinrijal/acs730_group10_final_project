@@ -1,0 +1,21 @@
+[windows]
+54.160.213.10
+
+[linux]
+linux1 ansible_host=3.88.193.64
+linux2 ansible_host=3.83.68.170 password=ira
+
+[windows:vars]
+ansible_user = Administrator
+ansible_password = -$i=YeR.S$kALtVUEquw!)d?GRanE3@$
+ansible_ssh_port = 5986
+ansible_connection = winrm
+ansible_winrm_server_cert_validation = ignore
+
+[linux:vars]
+ansible_user = ec2-user 
+ansible_ssh_private_key_file = /home/ec2-user/.ssh/linux
+
+[servers_all:children]
+linux
+windows
