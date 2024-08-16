@@ -62,11 +62,8 @@ jobs:
       - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
-          if [ ! -f ~/.ssh/linux.pem ]; then
-            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/linux.pem
-           else
-            echo "SSH private key already exists at ~/.ssh/linux.pem"
-          fi
+          mkdir -p ~/.ssh  # Ensure the .ssh directory exists
+          [ -f ~/.ssh/linux.pem ] || (echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/linux.pem && chmod 400 ~/.ssh/linux.pem)
           chmod 400 ~/.ssh/linux.pem
           
 
