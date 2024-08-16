@@ -48,10 +48,11 @@ jobs:
       - name: Terraform Approval
         run: echo "No approval step required"  # You might want to implement a manual approval step or another mechanism for approval
       
-      - name: Set up Ansible
-        uses: ansible/ansible-runner@v1
-        with:
-          version: 2.14  # Replace with your desired Ansible version
+      - name: Install Ansible
+        run: |
+          sudo apt update
+          sudo apt install -y python3-pip
+          pip3 install ansible
 
       - name: Run Ansible Playbook
         run: ansible-playbook ansible/myplaybook.yml -i ansible/hosts.txt
