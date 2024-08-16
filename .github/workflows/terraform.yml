@@ -58,7 +58,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/linux.pem
-          chmod 600 ~/.ssh/linux.pem
+          chmod 400 ~/.ssh/linux.pem
       
       - name: Run Ansible Playbook
         run: ansible-playbook ansible/myplaybook.yml -i ansible/hosts.txt
