@@ -5,12 +5,10 @@ resource "aws_instance" "webserver1" {
   subnet_id              = aws_subnet.public_subnet1.id
   vpc_security_group_ids = [aws_security_group.public_sg.id]
   key_name               = aws_key_pair.ssh_key.key_name
-
+  user_data = file("${path.module}/install_httpd.sh")
   tags = {
     Name = "Webserver1"
   }
-
-  user_data = file("${path.module}/install_httpd.sh")
 }
 
 resource "aws_instance" "webserver2" {
@@ -20,12 +18,10 @@ resource "aws_instance" "webserver2" {
   vpc_security_group_ids = [aws_security_group.public_sg.id]
   associate_public_ip_address = true
   key_name               = aws_key_pair.ssh_key.key_name
-
+  user_data = file("${path.module}/install_httpd.sh")
   tags = {
     Name = "Webserver2 (Bastion)"
   }
-
-  user_data = file("${path.module}/install_httpd.sh")
 }
 
 resource "aws_instance" "webserver3" {
@@ -34,12 +30,9 @@ resource "aws_instance" "webserver3" {
   subnet_id              = aws_subnet.public_subnet3.id
   vpc_security_group_ids = [aws_security_group.public_sg.id]
   key_name               = aws_key_pair.ssh_key.key_name
-
   tags = {
-    Name = "Webserver3"
+    Name = "AnsibleWebserver"
   }
-
-  user_data = file("${path.module}/install_httpd.sh")
 }
 
 resource "aws_instance" "webserver4" {
@@ -50,7 +43,7 @@ resource "aws_instance" "webserver4" {
   key_name               = aws_key_pair.ssh_key.key_name
 
   tags = {
-    Name = "Webserver4"
+    Name = "AnsibleWebserver"
   }
 
   user_data = file("${path.module}/install_httpd.sh")
