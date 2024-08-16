@@ -70,6 +70,6 @@ resource "aws_lb_target_group_attachment" "web_attachment1" {
 
 resource "aws_lb_target_group_attachment" "web_attachment3" {
   target_group_arn = aws_lb_target_group.web_tg.arn
-  target_id        = aws_instance.webserver5.id
+  target_id        = aws_instance.webserver3.id
   port             = 80
 }
