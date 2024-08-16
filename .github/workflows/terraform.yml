@@ -62,9 +62,10 @@ jobs:
       - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/linux.pem
+          if [ ! -f ~/.ssh/linux.pem ]; then  # Check if the file does not already exist
+            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/linux.pem
           chmod 400 ~/.ssh/linux.pem
-          ssh-keyscan -H 54.211.251.224 >> ~/.ssh/known_hosts
+          
 
       - name: SSH into EC2
         run: |
