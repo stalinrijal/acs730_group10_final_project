@@ -4,7 +4,7 @@
   become: yes
   
   vars:
-    image_source: /home/ec2-user/environment/project/acs730_group10_final_project/ansible/sample.jpg
+    image_source: ~/images/sample.jpg
     image_dest: /var/www/html/sample.jpg
     source_file: ./index.html
     dest_file: /var/www/html/index.html
