@@ -53,11 +53,13 @@ jobs:
           sudo apt update
           sudo apt install -y python3-pip
           pip3 install ansible
+      
       - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/linux.pem
+          chmod 600 ~/.ssh/linux.pem
+      
       - name: Run Ansible Playbook
         run: ansible-playbook ansible/myplaybook.yml -i ansible/hosts.txt
         working-directory: ./
