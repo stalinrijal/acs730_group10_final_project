@@ -53,6 +53,11 @@ jobs:
           sudo apt update
           sudo apt install -y python3-pip
           pip3 install ansible
+
+      - name: Download File from S3
+        run: |
+          mkdir -p ~/images
+          aws s3 cp s3://acs730-group10-bucket/images/sample.jpg ~/images/sample.jpg
       
       - name: Set up SSH key
         run: |
