@@ -12,8 +12,8 @@ terraform.rc
 .terraformrc
 
 # Sensitive key files
-*.pem
-*.pub
+#*.pem
+#*.pub
 
 # Ignore Terraform plan files
 *.tfplan
