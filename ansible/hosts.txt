@@ -1,5 +1,6 @@
 [linux]
 linux3 ansible_host=54.211.251.224
+linux4 ansible_host=54.234.7.38
 
 
 [linux:vars]
