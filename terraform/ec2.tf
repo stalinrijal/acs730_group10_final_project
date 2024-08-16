@@ -10,13 +10,7 @@ resource "aws_instance" "webserver1" {
     Name = "Webserver1"
   }
 
-  user_data = <<-EOF
-              #!/bin/bash
-              yum update -y
-              yum install -y httpd
-              systemctl start httpd
-              systemctl enable httpd
-              EOF
+  user_data = file("${path.module}/install_httpd.sh")
 }
 
 resource "aws_instance" "webserver2" {
@@ -31,13 +25,7 @@ resource "aws_instance" "webserver2" {
     Name = "Webserver2 (Bastion)"
   }
 
-  user_data = <<-EOF
-              #!/bin/bash
-              yum update -y
-              yum install -y httpd
-              systemctl start httpd
-              systemctl enable httpd
-              EOF
+  user_data = file("${path.module}/install_httpd.sh")
 }
 
 resource "aws_instance" "webserver3" {
@@ -51,13 +39,7 @@ resource "aws_instance" "webserver3" {
     Name = "Webserver3"
   }
 
-  user_data = <<-EOF
-              #!/bin/bash
-              yum update -y
-              yum install -y httpd
-              systemctl start httpd
-              systemctl enable httpd
-              EOF
+  user_data = file("${path.module}/install_httpd.sh")
 }
 
 resource "aws_instance" "webserver4" {
@@ -71,13 +53,7 @@ resource "aws_instance" "webserver4" {
     Name = "Webserver4"
   }
 
-  user_data = <<-EOF
-              #!/bin/bash
-              yum update -y
-              yum install -y httpd
-              systemctl start httpd
-              systemctl enable httpd
-              EOF
+  user_data = file("${path.module}/install_httpd.sh")
 }
 
 # Web Server Instances in Private Subnets
