@@ -5,9 +5,9 @@ regions:
 filters:
   tag:Deployment: Ansible  
 keyed_groups:
-  - key: tags.Name
+  - key: tags.Deployment
     prefix: tag
 hostnames:
-  - tag:Name
+  - tag:Deployment
 compose:
   ansible_host: public_ip_address  # or private_ip_address if using a VPC
