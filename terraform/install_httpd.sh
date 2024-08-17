@@ -7,7 +7,7 @@ aws s3 cp s3://acs730-group10-bucket/images/sample.jpg /var/www/html/image.jpg
 PUBLIC_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
 echo "<h1>Hello from ACS730 Webserver</h1>" > /var/www/html/index.html
 echo "<p>Environment: ${env}</p>" >> /var/www/html/index.html
-echo "<p>Public IP: $PUBLIC_IP</p>" >> /var/www/html/index.html
+echo "<p>Welcome to ACS730 Final project! Group 10: Stalin, Anup, Bhupendra --- IP: $PUBLIC_IP</p>" >> /var/www/html/index.html
 
 # #!/bin/bash
 # yum -y update
