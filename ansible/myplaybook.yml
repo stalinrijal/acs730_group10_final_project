@@ -1,6 +1,6 @@
 ---
 - name: Install and verify Apache Web Server on Amazon Linux
-  hosts: tag_AnsibleWebserver
+  hosts: tag_Ansible
   become: yes
   
   vars:
