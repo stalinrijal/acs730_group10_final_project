@@ -62,7 +62,7 @@ jobs:
       - name: Download File from S3
         run: |
           mkdir -p ~/html
-          aws s3 cp s3://acs730-group10-bucket/html/sample.jpg ~/html/index.html
+          aws s3 cp s3://acs730-group10-bucket/html/index.html ~/html/index.html
       
       - name: Set up SSH key
         run: |
