@@ -31,7 +31,8 @@ resource "aws_instance" "webserver3" {
   vpc_security_group_ids = [aws_security_group.public_sg.id]
   key_name               = aws_key_pair.ssh_key.key_name
   tags = {
-    Name = "AnsibleWebserver"
+    Name = "Webserver3",
+    Deployment = "Ansible"
   }
 }
 
@@ -43,10 +44,9 @@ resource "aws_instance" "webserver4" {
   key_name               = aws_key_pair.ssh_key.key_name
 
   tags = {
-    Name = "AnsibleWebserver"
+    Name = "Webserver4",
+    Deployment = "Ansible"
   }
-
-  user_data = file("${path.module}/install_httpd.sh")
 }
 
 # Web Server Instances in Private Subnets
@@ -56,9 +56,18 @@ resource "aws_instance" "webserver5" {
   subnet_id              = aws_subnet.private_subnet1.id
   vpc_security_group_ids = [aws_security_group.private_sg.id]
   key_name               = aws_key_pair.ssh_key.key_name
+  user_data = <<-EOF
+    #!/bin/bash
+    sudo yum update -y
+    sudo yum install -y httpd
+    sudo systemctl start httpd
+    sudo systemctl enable httpd
+    echo "Apache HTTP Server is installed and running - Group 10 : Stalin, Anup, Bhupendra" | sudo tee /var/www/html/index.html
+  EOF
 
   tags = {
-    Name = "Webserver5"
+    Name = "Webserver5",
+    Deployment = "terraform"
   }
 }
 
