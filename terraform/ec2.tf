@@ -46,7 +46,7 @@ resource "aws_instance" "webserver4" {
   subnet_id              = aws_subnet.public_subnet4.id
   vpc_security_group_ids = [aws_security_group.public_sg.id]
   key_name               = aws_key_pair.ssh_key.key_name
-
+  associate_public_ip_address = true
   tags = {
     Name = "Webserver4",
     Deployment = "Ansible"
@@ -60,6 +60,7 @@ resource "aws_instance" "webserver5" {
   subnet_id              = aws_subnet.private_subnet1.id
   vpc_security_group_ids = [aws_security_group.private_sg.id]
   key_name               = aws_key_pair.ssh_key.key_name
+  associate_public_ip_address = true
   user_data = <<-EOF
     #!/bin/bash
     sudo yum update -y
@@ -81,7 +82,7 @@ resource "aws_instance" "webserver6" {
   subnet_id              = aws_subnet.private_subnet2.id
   vpc_security_group_ids = [aws_security_group.private_sg.id]
   key_name               = aws_key_pair.ssh_key.key_name
-
+  associate_public_ip_address = true
   tags = {
     Name = "Webserver6"
   }
