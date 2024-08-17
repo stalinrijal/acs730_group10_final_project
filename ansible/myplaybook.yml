@@ -2,6 +2,7 @@
 - name: Install and verify Apache Web Server on Amazon Linux
   hosts: tag_Ansible
   become: yes
+  gather_facts: True
   
   vars:
     ansible_user : ec2-user 
@@ -10,16 +11,17 @@
     image_dest: /var/www/html/sample.jpg
     source_file: ~/html/index.html
     dest_file: /var/www/html/index.html
+  
+  pre_tasks:
+    - name: Print tag_Ansible group
+      debug:
+        msg: "Hosts in tag_Ansible group: {{ groups['tag_Ansible'] }}"
 
+    - name: Print individual host details
+      debug:
+        msg: "Host: {{ inventory_hostname }}, IP: {{ ansible_host }}"
+      when: inventory_hostname in groups['tag_Ansible']
   tasks:
-    - name: Get host IP address
-      ansible.builtin.set_fact:
-        host_ip: "{{ ansible_default_ipv4.address }}"
-    
-    - name: Print host IP address
-      ansible.builtin.debug:
-        msg: "The host IP address is: {{ host_ip }}"
-        
     - name: Install Apache on Amazon Linux
       yum:
         name: httpd
