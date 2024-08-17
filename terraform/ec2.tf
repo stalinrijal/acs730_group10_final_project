@@ -5,7 +5,9 @@ resource "aws_instance" "webserver1" {
   subnet_id              = aws_subnet.public_subnet1.id
   vpc_security_group_ids = [aws_security_group.public_sg.id]
   key_name               = aws_key_pair.ssh_key.key_name
-  user_data = file("${path.module}/install_httpd.sh")
+  user_data = base64encode(templatefile("${path.module}/install_httpd.sh", {
+    env = var.env
+  }))
   tags = {
     Name = "Webserver1"
   }
@@ -18,7 +20,9 @@ resource "aws_instance" "webserver2" {
   vpc_security_group_ids = [aws_security_group.public_sg.id]
   associate_public_ip_address = true
   key_name               = aws_key_pair.ssh_key.key_name
-  user_data = file("${path.module}/install_httpd.sh")
+  user_data = base64encode(templatefile("${path.module}/install_httpd.sh", {
+    env = var.env
+  }))
   tags = {
     Name = "Webserver2 (Bastion)"
   }

@@ -1,4 +1,10 @@
 #Config:
+variable "env" {
+  default     = "prod"
+  type        = string
+  description = "Bucket name"
+}
+
 variable "bucket_name" {
   default     = "acs730-group10-bucket"
   type        = string
