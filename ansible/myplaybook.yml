@@ -12,6 +12,13 @@
     dest_file: /var/www/html/index.html
 
   tasks:
+    - name: Get host IP address
+        ansible.builtin.set_fact:
+          host_ip: "{{ ansible_default_ipv4.address }}"
+    
+    - name: Print host IP address
+      ansible.builtin.debug:
+        msg: "The host IP address is: {{ host_ip }}"
     - name: Install Apache on Amazon Linux
       yum:
         name: httpd
