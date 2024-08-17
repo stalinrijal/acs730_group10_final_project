@@ -8,7 +8,7 @@
     ansible_ssh_private_key_file : ~/.ssh/linux.pem
     image_source: ~/images/sample.jpg
     image_dest: /var/www/html/sample.jpg
-    source_file: ./index.html
+    source_file: ~/html/index.html
     dest_file: /var/www/html/index.html
 
   tasks:
