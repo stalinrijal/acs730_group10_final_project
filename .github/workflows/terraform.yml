@@ -87,5 +87,5 @@ jobs:
           ssh-keyscan -H 54.146.150.67 >> ~/.ssh/known_hosts
       
       - name: Run Ansible Playbook
-        run: ansible-playbook -i ansible/aws_ec2.yml ansible/myplaybook.yml -vvvv
+        run: ansible-playbook -i ansible/aws_ec2.yml ansible/myplaybook.yml
         working-directory: ./
