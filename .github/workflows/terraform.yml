@@ -4,6 +4,19 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      tag-key:
+        description: 'Deployment'
+        required: true
+        default: 'Deployment'
+      tag-value:
+        description: 'Ansible'
+        required: true
+      aws-region:
+        description: 'AWS Region'
+        required: true
+        default: 'us-east-1'
 
 jobs:
   terraform:
@@ -47,6 +60,28 @@ jobs:
 
       - name: Terraform Approval
         run: echo "No approval step required"  # You might want to implement a manual approval step or another mechanism for approval
+      
+      - name: Get EC2 instance public IP by tag
+      id: get-ip
+      run: |
+        PUBLIC_IP=$(aws ec2 describe-instances \
+          --filters "Name=tag:${{ github.event.inputs.tag-key }},Values=${{ github.event.inputs.tag-value }}" \
+          --query "Reservations[].Instances[?State.Name=='running'].[PublicIpAddress]" \
+          --output text)
+        if [ -z "$PUBLIC_IP" ]; then
+          echo "No running instances found with the specified tag."
+          exit 1
+        fi
+        echo "PUBLIC_IP=$PUBLIC_IP" >> $GITHUB_OUTPUT
+
+      - name: Add IP to known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ steps.get-ip.outputs.PUBLIC_IP }} >> ~/.ssh/known_hosts
+          echo "Added ${{ steps.get-ip.outputs.PUBLIC_IP }} to known hosts"
+
+      - name: Display known hosts content
+        run: cat ~/.ssh/known_hosts
       
       - name: Install Ansible
         run: |
