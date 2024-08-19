@@ -106,3 +106,5 @@ pip3 install boto3
 
 Ansible playbook using a dynamic inventory for AWS EC2 instances.
 Ansible-playbook -i aws_ec2.yml myplaybook.yml
+
+#review
